@@ -6,7 +6,33 @@ public class A07RotateMatrix {
 	
 	private void rotate(int[][] input) {
 		if(input != null && input.length == input[0].length) {
-			int layers = (int)Math.ceil(input.length/2);
+			int layers = input.length/2;
+			int size = input.length;
+			for(int layer = 0; layer < layers; layer++) {
+				int first = layer;
+				int last = size - 1 - layer;
+				for(int i = first; i < last; i++) {
+					int offset = i - first;
+					int top = input[first][i];
+					//left -> top
+					input[first][i] = input[last-offset][first];
+					
+					//bottom -> left
+					input[last-offset][first] = input[last][last-offset];
+					
+					//right -> bottom
+					input[last][last-offset] = input[i][last];
+					
+					//top -> right
+					input[i][last] = top;
+				}
+			}
+		}
+	}
+	
+	private void rotateOld(int[][] input) {
+		if(input != null && input.length == input[0].length) {
+			int layers = input.length/2;
 			int layerElems = input.length - 1;
 			for(int layer = 0; layer < layers; layer++) {
 				int [] cachedTop = new int[layerElems];
@@ -84,7 +110,10 @@ public class A07RotateMatrix {
 		};
 		
 		A07RotateMatrix a07 = new A07RotateMatrix();
-		int[][] input = input5;
+		int[][] input = input6;
+		a07.rotate(input);
+		a07.rotate(input);
+		a07.rotate(input);
 		a07.rotate(input);
 		for(int i = 0; i < input.length; i++) {
 			System.out.println(Ints.join(",", input[i]));
