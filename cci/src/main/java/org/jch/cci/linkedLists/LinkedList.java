@@ -23,12 +23,31 @@ public class LinkedList<T> {
 		}
 	}
 	
+	public void head(LinkedListNode<T> head) {
+		this.head = head;
+	}
+	
+	public LinkedListNode<T> insertBefore(LinkedListNode<T> beforeNode, T data) {
+		LinkedListNode<T> node = new LinkedListNode<T>();
+		node.data = data;
+		node.next = beforeNode;
+		return node;
+	}
+	
+	public LinkedListNode<T> insertAfter(LinkedListNode<T> afterNode, T data) {
+		LinkedListNode<T> node = new LinkedListNode<T>();
+		node.data = data;
+		node.next = null;
+		afterNode.next = node;
+		return node;
+	}
+	
 	public LinkedListNode<T> get(int i) {
 		LinkedListNode<T> node = null;
 		if(i >= 0) {
 			int k = 0;
 			LinkedListNode<T> tail = head;
-			while(tail.next != null) {
+			while(tail != null) {
 				if(k == i) {
 					node = tail;
 					break;
