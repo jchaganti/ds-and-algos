@@ -42,6 +42,12 @@ public class LinkedList<T> {
 		return node;
 	}
 	
+	public LinkedListNode<T> insertAfter(LinkedListNode<T> afterNode, LinkedListNode<T> node) {
+		node.next = null;
+		afterNode.next = node;
+		return node;
+	}
+	
 	public LinkedListNode<T> get(int i) {
 		LinkedListNode<T> node = null;
 		if(i >= 0) {
