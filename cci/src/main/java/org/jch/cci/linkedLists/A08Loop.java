@@ -1,5 +1,9 @@
 package org.jch.cci.linkedLists;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Arrays;
+
 public class A08Loop {
 	
 	private LinkedListNode<Integer> detectLoop(LinkedListNode<Integer> node) {
@@ -52,7 +56,12 @@ public class A08Loop {
 		A08Loop a08 = new A08Loop();
 		LinkedListNode<Integer> loopHead = a08.detectLoop(head);
 		System.out.println("Loop Head: " + loopHead.data);
-		
+		try {
+			System.out.println(InetAddress.getLocalHost().getHostAddress());
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }
